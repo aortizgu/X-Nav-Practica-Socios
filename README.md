@@ -1,3 +1,8 @@
+
+[Try me](https://aortizgu.github.io/X-Nav-Practica-Socios/index.html)
+
+-----------------------------------------------------------------------------------------------------
+
 # X-Nav-Practica-Socios
 Ejercicio de asignaturas de aplicaciones HTML5. Segunda práctica optativa. Socios.
 
