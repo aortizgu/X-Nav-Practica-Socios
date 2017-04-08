@@ -2,13 +2,91 @@
 <html lang="en">
 
 <head>
-    <title>Club de Socios</title>
+    <title>Red Social de Cocina</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript" src="jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="myScript.js"></script>
+
 </head>
 
 <body>
+    <div class="page-header">
+        <h1>Red Social de Cocina.<br><small>Aprende y comparte receteas de cocina</small></h1>
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <fieldset>
+                <label for="ususrioListWidget">Selecciona un usuario: </label>
+                <select name="ususrioListWidget" id="ususrioListWidget">
+                    <option>Ninguno</option>
+    </select>
+        </div>
+    </div>
+
+    <div id="tabs">
+
+        <ul>
+            <li><a href="#tabs-Timeline">Lista de recetas</a></li>
+            <li><a href="#tabs-Fotos">Fotografias de recetas</a></li>
+            <li><a href="#tabs-Usuario">Información de Usuario</a></li>
+        </ul>
+
+        <div id="tabs-Timeline">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+                    <ol id="menu">
+                        <li>
+                            <div>Todo</div>
+                        </li>
+                        <li>
+                            <div>Ensaladas</div>
+                        </li>
+                        <li>
+                            <div>Primeros</div>
+                        </li>
+                        <li>
+                            <div>Segundos</div>
+                        </li>
+                        <li>
+                            <div>Postres</div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10" id="recetas">
+                </div>
+            </div>
+            <div>
+                <div class="row" id="tabs-Fotos">
+                </div>
+            </div>
+            <div id="tabs-Usuario">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img id="tabs-Usuario-foto" class="media-object" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <div class="container">
+                            <h2 id="tabs-Usuario-nombre"></h2>
+                            <p>Email: <span id="tabs-Usuario-email"></span></p>
+                            <p>Popularidad: <span id="tabs-Usuario-Popularidad"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 
