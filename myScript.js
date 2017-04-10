@@ -11,7 +11,6 @@ $(document).ready(function() {
     $(function() {
         $("#menu").menu().selectable(({
             selected: function(event, ui) {
-
                 $(".ui-selected", this).each(function() {
                     var index = $("#menu li").index(this).innerText;
                     console.log("selected-> " + this.innerText);
@@ -25,7 +24,6 @@ $(document).ready(function() {
     $(function() {
         $("#ususrioListWidget").selectmenu({
             change: function(event, data) {
-
                 changeToUser(data.item.value);
             }
         });
