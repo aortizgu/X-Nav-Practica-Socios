@@ -1,6 +1,8 @@
-$(document).ready(function() {
+var usuario = null;
+var usuarios = [];
+var recetas = [];
 
-    $("#tabs").hide();
+$(document).ready(function() {
 
     $(function() {
         $("#tabs").tabs();
@@ -28,70 +30,127 @@ $(document).ready(function() {
             }
         });
     });
-    usuarios.forEach(function(usuario) {
-        $("#ususrioListWidget").append("<option>" + usuario.nombre + "</option>");
-    }, this);
+
+    $.ajax({
+            url: '/data/users.json',
+            type: 'GET',
+            cache: false
+        })
+        .done(function(data, status) {
+            usuarios = JSON.parse(JSON.stringify(data));
+            usuarios.forEach(function(usuario) {
+                $("#ususrioListWidget").append("<option>" + usuario.user_name + "</option>");
+            }, this);
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+
+
+
+    $(function() {
+        $("#accordion").accordion({
+            collapsible: true,
+            active: false
+        });
+    });
+
+    $("#tabs").hide();
 });
 
 function showMenuSelected(item) {
-    $("#recetas").text("");
-    if (item == "Todo") {
-        for (var i = 0; i < usuario.recetas.length; i++) {
-            var receta = usuario.recetas[i];
-            var objeto = '<div class="thumbnail"><img src="' + receta.fotos[0] + '"><div class="caption"><h3>' + receta.nombre + '</h3><p>' + receta.descripcion + '</p></div></div>';
-            $("#recetas").append(objeto);
+    $("#accordion").text("");
+    recetas.forEach(function(receta) {
+        if (item == "Todo" || item == receta.tipo) {
+            var objeto = '<h3>' + receta.nombre +
+                '</h3><div class="thumbnail"><img src="' + receta.fotos[0] +
+                '"><div class="caption"><h3>' + receta.nombre +
+                '<br><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> ' + receta.likes +
+                '</h3><p>' + receta.descripcion +
+                '</p><br><h4>Ingredientes</h4><ol>';
+            receta.ingredientes.forEach(function(element) {
+                objeto += '<li><div>' + element + '</div></li>';
+            }, this);
+            objeto += '</ol></div></div>';
+            $("#accordion").append(objeto);
+        }
+    }, this);
+    $("#accordion").accordion("refresh");
+}
+
+function getUserDataFileName(name) {
+    var dataFile = "";
+    for (var i = 0; i < usuarios.length; i++) {
+        var u = usuarios[i];
+        if (u.user_name == name) {
+            dataFile = "/data/" + u.user_mail + ".json";
+            break;
         }
     }
-    switch (item) {
-        case "Todo":
-
-            break;
-        case "Ensaladas":
-
-            break;
-        case "Primeros":
-
-            break;
-        case "Segundos":
-
-            break;
-        case "Postres":
-
-            break;
-        default:
-            break;
-    }
+    return dataFile;
 }
-var usuario = null;
 
 function changeToUser(name) {
+    $("#accordion").text("");
+    $("#content-Fotos").text("");
+    delete recetas;
+    recetas = [];
     console.log("changeToUser: " + name);
     if (name == "Ninguno") {
         $("#tabs").hide();
         return;
     }
     usuario = null;
-    for (var index = 0; index < usuarios.length; index++) {
-        var element = usuarios[index];
-        if (element.nombre == name) {
-            usuario = element;
-            break;
-        }
-    }
-    $('#tabs-Fotos').html("");
-    if (usuario != null) {
-        for (var i = 0; i < usuario.recetas.length; i++) {
-            var receta = usuario.recetas[i];
-            for (var j = 0; j < receta.fotos.length; j++) {
-                var foto = receta.fotos[j];
-                $('#tabs-Fotos').append('<div class="col-xs-6 col-md-3"><a class = "thumbnail"><img src="' + foto + '"></a></div >');
+    fileName = getUserDataFileName(name);
+    $.ajax({
+            url: fileName,
+            type: 'GET',
+            cache: false
+        })
+        .done(function(data, status) {
+            usuario = JSON.parse(JSON.stringify(data));
+            if (usuario != null) {
+                //user info
+                $("#tabs-Usuario-foto").attr("src", usuario.foto);
+                $("#tabs-Usuario-nombre").text(usuario.nombre);
+                $("#tabs-Usuario-email").text(usuario.mail);
+                $("#tabs-Usuario-Popularidad").text(usuario.popularidad);
+                $("#tabs").show();
+                var ajaxReqs = [];
+                usuario.recetas.forEach(function(recetaName) {
+                    ajaxReqs.push($.ajax({
+                            url: recetaName,
+                            type: 'GET',
+                            cache: false,
+                            async: false
+                        })
+                        .done(function(data, status) {
+                            receta = JSON.parse(JSON.stringify(data));
+                            recetas.push(receta);
+                        })
+                        .fail(function() {
+                            console.log("error " + recetaName);
+                        })
+                        .always(function() {}));
+                }, this);
+                $.when.apply($, ajaxReqs).then(function() {
+                    // all requests are complete
+                    recetas.forEach(function(receta) {
+                        receta.fotos.forEach(function(foto) {
+                            $('#content-Fotos').append('<div class="col-xs-6 col-md-3"><a class = "thumbnail"><img src="' + foto + '"></a></div >');
+                        })
+                    }, this);
+                    showMenuSelected("Todo");
+                });
+            } else {
+                console.log("user not found");
             }
-        }
-        //user info
-        $("#tabs-Usuario-foto").attr("src", usuario.foto);
-        $("#tabs-Usuario-nombre").text(usuario.nombre);
-        $("#tabs-Usuario-email").text(usuario.mail);
-        $("#tabs-Usuario-Popularidad").text(usuario.popularidad);
-        $("#tabs").show();
-    }
+        })
+        .fail(function() {
+            console.log("error " + fileName);
+        })
+        .always(function() {})
 }

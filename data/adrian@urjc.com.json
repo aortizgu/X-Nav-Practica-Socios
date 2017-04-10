@@ -1,0 +1,12 @@
+{
+    "mail": "adrian@urjc.com",
+    "nombre": "Adrián Ortiz Gutierrez",
+    "popularidad": 50,
+    "foto": "images/adrian@urjc.com.jpeg",
+    "recetas": ["/data/ensaladaCesar.json",
+        "/data/pastaPesto.json",
+        "/data/cocido.json",
+        "/data/lubinaHorno.json",
+        "/data/tartaTresChocolates.json"
+    ]
+}

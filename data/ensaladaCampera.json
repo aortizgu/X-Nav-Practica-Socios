@@ -1,0 +1,18 @@
+{
+    "nombre": "Ensalada campera",
+    "tipo": "Ensaladas",
+    "descripcion": "La ensalada que os muestro a continuación es un intento de reducir muchas de las calorías que tiene la ensalada cesar original. En vez de pollo he puesto pavo y en vez de salsa cesar he puesto salsa de yogur. La verdad que si cambio los ingredientes principales ya no es una ensalada cesar jajaja pero vamos que echando un vistazo a la presentación se la puede colar a alguien perfectamente. Os aseguro que está deliciosa, además os dejo un enlace a la original por si os apetece la ensalada cesar real. A parte los curruscos de pan frito que suele llevar los he puesto tostados e integrales, de esta manera reducimos en gran cantidad las calorías que pueda llevar una ensalada cesar tradicional.",
+    "proceso": "Comenzaremos empanando los trozos de pavo en huevo y pan rallado y friéndolos en aceite muy caliente. Cortamos la lechuga y la lavamos bien, si viene en bolsa simplemente la cortaremos un poco porque a veces vienen trozos inmensos difíciles de comer. Emplatamos con la lechuga, los trozos de pavo empanado, el pan y salsa de yogur.",
+    "likes": 190,
+    "ingredientes": [
+        "1 pechuga de pavo en trozos",
+        "1 huevo",
+        "Pan rallado",
+        "Salsa de yogur",
+        "Currusco de pan integral o solo tostado",
+        "Lechuga iceberg"
+    ],
+    "fotos": [
+        "images/ensalada-campera.jpeg"
+    ]
+}

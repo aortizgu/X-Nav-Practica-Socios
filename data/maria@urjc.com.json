@@ -1,0 +1,13 @@
+{
+    "mail": "maria@urjc.com",
+    "nombre": "María Cruz Gutiérrez Fernandez",
+    "popularidad": 500,
+    "foto": "images/maria@urjc.com.jpeg",
+    "recetas": [
+        "data/ensaladaCampera.json",
+        "data/pastaCarbonara.json",
+        "data/cochinillo.json",
+        "data/bacalaoTomate.json",
+        "data/tartaManzana.json"
+    ]
+}
