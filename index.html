@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Red Social de Cocina</title>
+    <title>Socios</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" href="style.css">
 
+    <script type="text/javascript" src="dateFormat.min.js"></script>
     <script type="text/javascript" src="jquery-ui-1.12.1/external/jquery/jquery.js"></script>
     <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
@@ -18,77 +19,71 @@
 </head>
 
 <body>
-    <div class="page-header">
-        <h1>Red Social de Cocina.<br><small>Aprende y comparte receteas de cocina</small></h1>
-    </div>
+    <div class='container'>
+        <header>
+            <img src="/X-Nav-Practica-Socios/images/logo.svg"></img>
+            <h1>Socios message board</h1>
+        </header>
 
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <fieldset>
-                <label for="ususrioListWidget">Selecciona un usuario: </label>
-                <select name="ususrioListWidget" id="ususrioListWidget">
-                    <option>Ninguno</option>
+        <div class="panel panel-default">
+            <div class=" panel-body">
+                <fieldset>
+                    <label for="usuarioListWidget">Choose user: </label>
+                    <select name="usuarioListWidget" id="usuarioListWidget">
+                    <option  >None</option>
     </select>
-        </div>
-    </div>
+            </div>
 
-    <div id="tabs">
 
-        <ul>
-            <li><a href="#tabs-Timeline">Lista de recetas</a></li>
-            <li><a href="#tabs-Fotos">Fotografias de recetas</a></li>
-            <li><a href="#tabs-Usuario">Información de Usuario</a></li>
-        </ul>
+            <div id="tabs">
 
-        <div id="tabs-Timeline">
-            <div class="row">
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-                    <ol id="menu">
-                        <li>
-                            <div>Todo</div>
-                        </li>
-                        <li>
-                            <div>Ensaladas</div>
-                        </li>
-                        <li>
-                            <div>Primeros</div>
-                        </li>
-                        <li>
-                            <div>Segundos</div>
-                        </li>
-                        <li>
-                            <div>Postres</div>
-                        </li>
-                    </ol>
-                </div>
-                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10" id="recetas">
-                    <div id="accordion">
+                <ul class="myStyle">
+                    <li><a href="#tabs-Timeline">Timeline</a></li>
+                    <li><a href="#tabs-my-Messages">My messages</a></li>
+                    <li><a href="#tabs-User">User info</a></li>
+                </ul>
+
+                <div id="tabs-Timeline">
+                    <div class=" row">
+                        <div class=" col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <button class=" btn-primary" id="update_button"><span id='num_new_msgs'></span> New messages</button>
+                            <ol id="filter">
+                            </ol>
+                        </div>
+                        <div class=" col-xs-12 col-sm-10 col-md-10 col-lg-10" id="messageFilteredBoard">
+                            <div id="msgs_filtered">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div id="tabs-Fotos">
-            <div class="row" id="content-Fotos">
-            </div>
-        </div>
-        <div id="tabs-Usuario">
-            <div class="media">
-                <div class="media-left media-middle">
-                    <a href="#">
-                        <img id="tabs-Usuario-foto" class="media-object" src="" alt="">
-                    </a>
+                <div id="tabs-my-Messages">
+                    <div class=" row">
+                        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12" id="myMessages">
+                            <div id="my_messages">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="media-body">
-                    <div class="container">
-                        <h2 id="tabs-Usuario-nombre"></h2>
-                        <p>Email: <span id="tabs-Usuario-email"></span></p>
-                        <p>Popularidad: <span id="tabs-Usuario-Popularidad"></span></p>
+                <div id="tabs-User">
+                    <div class=" media">
+                        <div class=" media-left media-middle">
+                            <a href="#">
+                                <img id="tabs-user-info-photo" class=" media-object" src="" alt="">
+                            </a>
+                        </div>
+                        <div class=" media-body">
+                            <div class=" container">
+                                <h2 id="tabs-user-info-name"></h2>
+                                <p>mail: <span id="tabs-user-info-mail"></span></p>
+                                <p>Popularity: <span id="tabs-user-info-popularity"></span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 </body>
 

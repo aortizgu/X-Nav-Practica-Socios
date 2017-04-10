@@ -1,9 +1,49 @@
 [{
         "user_mail": "antonio@urjc.com",
-        "user_name": "Antonio Fernandez García"
+        "user_name": "Antonio Fernandez García",
+        "user_photo": "/X-Nav-Practica-Socios/images/antonio@urjc.com.jpeg",
+        "user_popularity": 100
+    },
+    {
+        "user_mail": "adrian@urjc.com",
+        "user_name": "Adrian Dominguez Calle",
+        "user_photo": "/X-Nav-Practica-Socios/images/adrian@urjc.com.jpeg",
+        "user_popularity": 200
+    },
+    {
+        "user_mail": "alfredo@urjc.com",
+        "user_name": "Alfredo Jimenez Vaquilla",
+        "user_photo": "/X-Nav-Practica-Socios/images/alfredo@urjc.com.jpeg",
+        "user_popularity": 300
+    },
+    {
+        "user_mail": "jose@urjc.com",
+        "user_name": "Jose Moreno Díaz",
+        "user_photo": "/X-Nav-Practica-Socios/images/jose@urjc.com.jpeg",
+        "user_popularity": 140
+    },
+    {
+        "user_mail": "laura@urjc.com",
+        "user_name": "Laura Blanco Antón",
+        "user_photo": "/X-Nav-Practica-Socios/images/laura@urjc.com.jpeg",
+        "user_popularity": 400
     },
     {
         "user_mail": "maria@urjc.com",
-        "user_name": "María Moreno López"
+        "user_name": "María Gonzalez Aznar",
+        "user_photo": "/X-Nav-Practica-Socios/images/maria@urjc.com.jpeg",
+        "user_popularity": 700
+    },
+    {
+        "user_mail": "paula@urjc.com",
+        "user_name": "Paula Villar Gómez",
+        "user_photo": "/X-Nav-Practica-Socios/images/paula@urjc.com.jpeg",
+        "user_popularity": 600
+    },
+    {
+        "user_mail": "pedro@urjc.com",
+        "user_name": "Pedro Manrique Guzmán",
+        "user_photo": "/X-Nav-Practica-Socios/images/pedro@urjc.com.jpeg",
+        "user_popularity": 200
     }
 ]

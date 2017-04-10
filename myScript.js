@@ -1,6 +1,8 @@
-var usuario = null;
-var usuarios = [];
-var recetas = [];
+var user = null;
+var users = [];
+var messages = [];
+var new_messages = [];
+
 
 $(document).ready(function() {
 
@@ -9,20 +11,19 @@ $(document).ready(function() {
     })
 
     $(function() {
-        $("#menu").menu().selectable(({
+        $("#filter").menu().selectable(({
             selected: function(event, ui) {
                 $(".ui-selected", this).each(function() {
-                    var index = $("#menu li").index(this).innerText;
+                    var index = $("#filter li").index(this).innerText;
                     console.log("selected-> " + this.innerText);
-                    showMenuSelected(this.innerText.replace(/(\r\n|\n|\r)/gm, ""));
-
+                    showFilterSelected(this.innerText.replace(/(\r\n|\n|\r)/gm, ""));
                 });
             }
         }));
     });
 
     $(function() {
-        $("#ususrioListWidget").selectmenu({
+        $("#usuarioListWidget").selectmenu({
             change: function(event, data) {
                 changeToUser(data.item.value);
             }
@@ -35,9 +36,9 @@ $(document).ready(function() {
             cache: false
         })
         .done(function(data, status) {
-            usuarios = JSON.parse(JSON.stringify(data));
-            usuarios.forEach(function(usuario) {
-                $("#ususrioListWidget").append("<option>" + usuario.user_name + "</option>");
+            users = JSON.parse(JSON.stringify(data));
+            users.forEach(function(user) {
+                $("#usuarioListWidget").append("<option>" + user.user_name + "</option>");
             }, this);
         })
         .fail(function() {
@@ -47,108 +48,139 @@ $(document).ready(function() {
             console.log("complete");
         });
 
-
-
-    $(function() {
-        $("#accordion").accordion({
-            collapsible: true,
-            active: false
-        });
-    });
-
     $("#tabs").hide();
+
+    $.ajax({
+            url: "/X-Nav-Practica-Socios/data/messages.json",
+            type: 'GET',
+            cache: false
+        })
+        .done(function(data, status) {
+            messages = JSON.parse(JSON.stringify(data));
+            messages.sort(function(a, b) {
+                return a.date - b.date;
+            });
+        })
+        .fail(function() {
+            console.log("error " + "/X-Nav-Practica-Socios/data/messages.json");
+        })
+        .always(function() {});
+
+    $.ajax({
+            url: "/X-Nav-Practica-Socios/data/new_messages.json",
+            type: 'GET',
+            cache: false
+        })
+        .done(function(data, status) {
+            new_messages = JSON.parse(JSON.stringify(data));
+            $('#num_new_msgs').text(new_messages.length);
+        })
+        .fail(function() {
+            console.log("error " + "/X-Nav-Practica-Socios/data/new_messages.json");
+        })
+        .always(function() {})
+
+    $('#update_button').click(
+        function() {
+            messages = messages.concat(new_messages);
+            new_messages = [];
+            $('#num_new_msgs').text(new_messages.length);
+            changeToUser(user.user_name);
+        });
 });
 
-function showMenuSelected(item) {
-    $("#accordion").text("");
-    recetas.forEach(function(receta) {
-        if (item == "Todo" || item == receta.tipo) {
-            var objeto = '<h3>' + receta.nombre +
-                '</h3><div class="thumbnail"><img src="' + receta.fotos[0] +
-                '"><div class="caption"><h3>' + receta.nombre +
-                '<br><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> ' + receta.likes +
-                '</h3><p>' + receta.descripcion +
-                '</p><br><h4>Ingredientes</h4><ol>';
-            receta.ingredientes.forEach(function(element) {
-                objeto += '<li><div>' + element + '</div></li>';
-            }, this);
-            objeto += '</ol></div></div>';
-            $("#accordion").append(objeto);
-        }
-    }, this);
-    $("#accordion").accordion("refresh");
+function getResource(resource) {
+    var ret = [];
+    $.ajax({
+            url: resource,
+            type: 'GET',
+            cache: false
+        })
+        .done(function(data, status) {
+            ret = JSON.parse(JSON.stringify(data));
+        })
+        .fail(function() {
+            console.log("error " + resource);
+        })
+        .always(function() {})
+    return ret;
 }
 
-function getUserDataFileName(name) {
-    var dataFile = "";
-    for (var i = 0; i < usuarios.length; i++) {
-        var u = usuarios[i];
-        if (u.user_name == name) {
-            dataFile = "/X-Nav-Practica-Socios/data/" + u.user_mail + ".json";
-            break;
+function showFilterSelected(item) {
+    $("#msgs_filtered").text("");
+    messages.forEach(function(m) {
+        if (item == "All" || item == m.sender) {
+            $("#msgs_filtered").append(genMessage(m));
         }
-    }
-    return dataFile;
+    }, this);
+}
+
+function fillUserInfo() {
+    $("#tabs-user-info-photo").attr("src", user.user_photo);
+    $("#tabs-user-info-name").text(user.user_name);
+    $("#tabs-user-info-mail").text(user.user_mail);
+    $("#tabs-user-info-popularity").text(user.user_popularity);
+}
+
+function genMessage(message) {
+    var ret = "";
+    ret += '<h3>' + message.tittle + '</h3>';
+    ret += '<div class="my_msg_box thumbnail">';
+    ret += '<div class="caption">'
+    ret += '<p>From: ' + message.sender + '</p>'
+    var d = new Date(message.date);
+    ret += '<p>Date: ' + d.getDate() + "/" +
+        (d.getMonth() + 1) + "/" +
+        d.getFullYear() + "  " +
+        d.getHours() + ":" +
+        d.getMinutes() + ":" +
+        d.getSeconds(); + '</p>'
+    ret += '<p>' + message.content + '</p>'
+    message.media.forEach(function(media) {
+        ret += "<img class='my-media-object' src='" + media + "'>";
+    }, this);
+    ret += '</div></div>';
+    return ret;
+}
+
+function genFilter() {
+    var filter = "<li id='all_msgs'><div>All</div></li>";
+    users.forEach(function(u) {
+        if (user.user_name != u.user_name) {
+            filter += "<li><div>" + u.user_name + "</div></li>";
+        }
+    }, this);
+    $("#filter").html(filter);
+
+    $("#filter").menu("refresh");
+    $("#filter").selectable("refresh");
+
+}
+
+function fillMyMsgs() {
+    messages.forEach(function(m) {
+        if (user.user_name == m.sender) {
+            $("#my_messages").append(genMessage(m));
+        }
+    }, this);
 }
 
 function changeToUser(name) {
     $("#accordion").text("");
     $("#content-Fotos").text("");
-    delete recetas;
-    recetas = [];
     console.log("changeToUser: " + name);
-    if (name == "Ninguno") {
+    if (name == "None") {
         $("#tabs").hide();
         return;
     }
-    usuario = null;
-    fileName = getUserDataFileName(name);
-    $.ajax({
-            url: fileName,
-            type: 'GET',
-            cache: false
-        })
-        .done(function(data, status) {
-            usuario = JSON.parse(JSON.stringify(data));
-            if (usuario != null) {
-                //user info
-                $("#tabs-Usuario-foto").attr("src", usuario.foto);
-                $("#tabs-Usuario-nombre").text(usuario.nombre);
-                $("#tabs-Usuario-email").text(usuario.mail);
-                $("#tabs-Usuario-Popularidad").text(usuario.popularidad);
-                $("#tabs").show();
-                var ajaxReqs = [];
-                usuario.recetas.forEach(function(recetaName) {
-                    ajaxReqs.push($.ajax({
-                            url: recetaName,
-                            type: 'GET',
-                            cache: false,
-                            async: false
-                        })
-                        .done(function(data, status) {
-                            receta = JSON.parse(JSON.stringify(data));
-                            recetas.push(receta);
-                        })
-                        .fail(function() {
-                            console.log("error " + recetaName);
-                        })
-                        .always(function() {}));
-                }, this);
-                $.when.apply($, ajaxReqs).then(function() {
-                    // all requests are complete
-                    recetas.forEach(function(receta) {
-                        receta.fotos.forEach(function(foto) {
-                            $('#content-Fotos').append('<div class="col-xs-6 col-md-3"><a class = "thumbnail"><img src="' + foto + '"></a></div >');
-                        })
-                    }, this);
-                    showMenuSelected("Todo");
-                });
-            } else {
-                console.log("user not found");
-            }
-        })
-        .fail(function() {
-            console.log("error " + fileName);
-        })
-        .always(function() {})
+    users.forEach(function(u) {
+        if (u.user_name == name) {
+            user = u;
+        }
+    }, this);
+    fillUserInfo();
+    genFilter();
+    showFilterSelected("All");
+    fillMyMsgs();
+    $("#tabs").show();
 }

@@ -1,0 +1,49 @@
+[{
+    "date": 1490851888994,
+    "sender": "María Gonzalez Aznar",
+    "tittle": "hello",
+    "content": "nothing to say",
+    "media": []
+}, {
+    "date": 1491751888994,
+    "sender": "Pedro Manrique Guzmán",
+    "tittle": "HI",
+    "content": "nothing to say",
+    "media": []
+}, {
+    "date": 1491821788794,
+    "sender": "Jose Moreno Díaz",
+    "tittle": "Alo",
+    "content": "nothing to say",
+    "media": []
+}, {
+    "date": 1481851888994,
+    "sender": "Laura Blanco Antón",
+    "tittle": "i can send photos",
+    "content": "i am sending photos",
+    "media": ["/X-Nav-Practica-Socios/images/media_example.jpeg"]
+}, {
+    "date": 1491851888994,
+    "sender": "Laura Blanco Antón",
+    "tittle": "hello again",
+    "content": "nothing to say",
+    "media": []
+}, {
+    "date": 1491841888994,
+    "sender": "María Gonzalez Aznar",
+    "tittle": "bye",
+    "content": "nothing to say",
+    "media": []
+}, {
+    "date": 1490851888994,
+    "sender": "Pedro Manrique Guzmán",
+    "tittle": "yuju",
+    "content": "nothing to say",
+    "media": []
+}, {
+    "date": 1491841888994,
+    "sender": "Jose Moreno Díaz",
+    "tittle": "NO",
+    "content": "nothing to say",
+    "media": []
+}]

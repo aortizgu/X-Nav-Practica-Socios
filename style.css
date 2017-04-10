@@ -2,17 +2,73 @@
     font-size: 1.4em;
 }
 
-#menu .ui-selecting {
+#filter .ui-selecting {
     background: #FECA40;
 }
 
-#menu .ui-selected {
+#filter .ui-selected {
     background: #F39814;
 }
 
-#menu {
+#filter {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 60%;
+    border-width: 6px;
+    border-radius: 12px;
+}
+
+header {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.my_msg_box {
+    border: none;
+    background: orange;
+}
+
+.btn-primary {
+    margin: 30px 0px 40px 10px;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+}
+
+.my-media-object {
+    width: 300px;
+    height: 150px;
+}
+
+.myStyle,
+.panel-body,
+.panel,
+body {
+    background: #F7BE81;
+    background-size: cover;
+    border: none;
+}
+
+.ui-widget-content a,
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited,
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited,
+a.ui-button,
+a:link.ui-button,
+a:visited.ui-button,
+.ui-widget.ui-widget-content,
+.ui-button {
+    color: orange;
+    text-decoration: none;
+    background: black;
+    border: none;
+}
+
+.ui-widget.ui-widget-content,
+.ui-widget-header {
+    color: black;
+    border: none;
+    background: #F7BE81;
 }
