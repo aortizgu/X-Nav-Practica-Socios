@@ -2,11 +2,11 @@
     "mail": "adrian@urjc.com",
     "nombre": "Adrián Ortiz Gutierrez",
     "popularidad": 50,
-    "foto": "images/adrian@urjc.com.jpeg",
-    "recetas": ["/data/ensaladaCesar.json",
-        "/data/pastaPesto.json",
-        "/data/cocido.json",
-        "/data/lubinaHorno.json",
-        "/data/tartaTresChocolates.json"
+    "foto": "/X-Nav-Practica-Socios/images/adrian@urjc.com.jpeg",
+    "recetas": ["/X-Nav-Practica-Socios/data/ensaladaCesar.json",
+        "/X-Nav-Practica-Socios/data/pastaPesto.json",
+        "/X-Nav-Practica-Socios/data/cocido.json",
+        "/X-Nav-Practica-Socios/data/lubinaHorno.json",
+        "/X-Nav-Practica-Socios/data/tartaTresChocolates.json"
     ]
 }

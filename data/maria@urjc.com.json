@@ -2,12 +2,12 @@
     "mail": "maria@urjc.com",
     "nombre": "María Cruz Gutiérrez Fernandez",
     "popularidad": 500,
-    "foto": "images/maria@urjc.com.jpeg",
+    "foto": "/X-Nav-Practica-Socios/images/maria@urjc.com.jpeg",
     "recetas": [
-        "data/ensaladaCampera.json",
-        "data/pastaCarbonara.json",
-        "data/cochinillo.json",
-        "data/bacalaoTomate.json",
-        "data/tartaManzana.json"
+        "/X-Nav-Practica-Socios/data/ensaladaCampera.json",
+        "/X-Nav-Practica-Socios/data/pastaCarbonara.json",
+        "/X-Nav-Practica-Socios/data/cochinillo.json",
+        "/X-Nav-Practica-Socios/data/bacalaoTomate.json",
+        "/X-Nav-Practica-Socios/data/tartaManzana.json"
     ]
 }
