@@ -158,6 +158,7 @@ function genFilter() {
 }
 
 function fillMyMsgs() {
+    $("#my_messages").text("");
     messages.forEach(function(m) {
         if (user.user_name == m.sender) {
             $("#my_messages").append(genMessage(m));
