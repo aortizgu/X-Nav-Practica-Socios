@@ -32,7 +32,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-            url: '/data/users.json',
+            url: '/X-Nav-Practica-Socios/data/users.json',
             type: 'GET',
             cache: false
         })
@@ -86,7 +86,7 @@ function getUserDataFileName(name) {
     for (var i = 0; i < usuarios.length; i++) {
         var u = usuarios[i];
         if (u.user_name == name) {
-            dataFile = "/data/" + u.user_mail + ".json";
+            dataFile = "/X-Nav-Practica-Socios/data/" + u.user_mail + ".json";
             break;
         }
     }
